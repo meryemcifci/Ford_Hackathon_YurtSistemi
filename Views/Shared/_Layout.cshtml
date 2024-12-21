@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Ford_Hackhathon_YurtSistemi.styles.css" asp-append-version="true" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-sm border-bottom box-shadow mb-3" style="background-color: #003AC9; color: white;">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="images/logo.jpg" alt="Logo" style="height: 40px; margin-right: 10px;">
+                    <img src="@Url.Content("~/images/logo.jpg")" alt="Logo" style="height: 40px; margin-right: 10px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -27,36 +26,30 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Service" asp-action="Index">Hizmetlerimiz</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Contact" asp-action="Index">İletişim</a>
                         </li>
                     </ul>
                 </div>
-                <form class="form-inline d-flex" style="width: auto;">
-                    <input class="form-control me-2" type="search" placeholder="Arama Yapabilirsiniz." aria-label="Search" style="width: 200px; height: 30px;">
-                    <button class="btn btn-outline-primary" type="submit" style="height: 30px; padding: 0 10px;">
+                <form asp-action="Search" method="get" class="form-inline">
+                    <input type="text" name="query" class="form-control" placeholder="Arama Yapabilirsiniz..." />
+                    <button type="submit" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container flex-grow-1">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Ford_Hackhathon_YurtSistemi - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

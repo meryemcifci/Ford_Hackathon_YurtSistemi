@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Ford_Hackhathon_YurtSistemi.Models.DormList>
+
+<h2>Arama Sonuçları</h2>
+
+@if (!Model.Any())
+{
+    <p>Aradığınız kriterlere uygun bir sonuç bulunamadı.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Yurt Adı</th>
+                <th>Adres</th>
+                <th>Telefon</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dorm in Model)
+            {
+                <tr>
+                    <td>@dorm.Name</td>
+                    <td>@dorm.Address</td>
+                    <td>@dorm.Telephone</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

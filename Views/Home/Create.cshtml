@@ -1,0 +1,53 @@
+﻿@model Ford_Hackhathon_YurtSistemi.Models.DormList
+
+
+<h2>Yeni Yurt Ekle</h2>
+
+<form asp-action="Create" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Yurt Adı</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="control-label">Adres</label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Telephone" class="control-label">Telefon</label>
+        <input asp-for="Telephone" class="form-control" />
+        <span asp-validation-for="Telephone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Images" class="control-label">Resim URL</label>
+        <input asp-for="Images" class="form-control" />
+        <span asp-validation-for="Images" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Capacity" class="control-label">Kapasite</label>
+        <input asp-for="Capacity" type="number" class="form-control" />
+        <span asp-validation-for="Capacity" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CurrentOccupancy" class="control-label">Mevcut Kişi Sayısı</label>
+        <input asp-for="CurrentOccupancy" type="number" class="form-control" />
+        <span asp-validation-for="CurrentOccupancy" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OccupancyRate" class="control-label">Doluluk Oranı (%)</label>
+        <input asp-for="OccupancyRate" type="number" class="form-control" />
+        <span asp-validation-for="OccupancyRate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

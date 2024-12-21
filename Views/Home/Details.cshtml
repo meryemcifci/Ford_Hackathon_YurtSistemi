@@ -41,8 +41,9 @@
         </table>
         <div class="mt-4">
             <td>
-                <a asp-action="Rooms" asp-route-id="@Model.Id" class="btn btn-info">Odalar</a>
-                <a asp-action="Students" asp-route-id="@Model.Id" class="btn btn-primary">Öğrenciler</a>
+            <a asp-controller="RoomLists" asp-action="Index" asp-route-id="@Model.Id" class="btn btn-info">Odalar</a>
+
+            <a asp-controller="StudentLists" asp-action="Index" asp-route-id="@Model.Id" class="btn btn-primary">Öğrenciler</a>
             </td>
 
             <!-- Geri Dön Butonu -->

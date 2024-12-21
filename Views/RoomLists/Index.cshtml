@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Ford_Hackhathon_YurtSistemi.Models.RoomList>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Floor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentOccupancy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OccupancyRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DormList)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Floor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentOccupancy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OccupancyRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DormList.Id)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-sm">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<a href="/" class="btn btn-secondary">Geri Dön</a>
+<a asp-action="Create" class="btn btn-success btn-sm">Create New</a>

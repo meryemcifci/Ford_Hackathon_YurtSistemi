@@ -16,7 +16,10 @@ public class YurtSistemiContext : DbContext
     {
       
     }
- 
+
+    public YurtSistemiContext()
+    {
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
