@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+<div id="map" style="height: 600px; width: 100%;"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Harita</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="height: 600px; width: 100%;"></div>
+    <script>
+        // Haritayı Başlat
+        var map = L.map('map').setView([39.92077, 32.85411], 6);
+
+        // OpenStreetMap katmanını ekle
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // GeoJSON URL'si
+        var geoJsonUrl = 'https://raw.githubusercontent.com/volkansahn/map-geojson-data/main/turkey-administrative.json';
+
+        var highlightedLayer; // Seçili alanı takip etmek için
+
+        // GeoJSON dosyasını yükle
+        fetch(geoJsonUrl)
+            .then(response => response.json())
+            .then(data => {
+                // GeoJSON'u haritaya ekle
+                L.geoJSON(data, {
+                    style: function (feature) {
+                        return {
+                            color: "#3388ff", // Kenar çizgi rengi
+                            weight: 2,        // Çizgi kalınlığı
+                            fillColor: "#cccccc", // Varsayılan dolgu rengi
+                            fillOpacity: 0.5   // Saydamlık
+                        };
+                    },
+                    onEachFeature: function (feature, layer) {
+                        // Şehre tıklandığında rengi değiştir
+                        layer.on('click', function () {
+                            if (highlightedLayer) {
+                                // Önceki seçili alanı varsayılan renk yap
+                                highlightedLayer.setStyle({
+                                    fillColor: "#cccccc",
+                                    fillOpacity: 0.5
+                                });
+                            }
+
+                            // Yeni seçili alanın rengini değiştir
+                            layer.setStyle({
+                                fillColor: "#ff7800", // Vurgu rengi
+                                fillOpacity: 0.7
+                            });
+
+                            highlightedLayer = layer; // Yeni seçili alanı kaydet
+
+                            // Popup ile şehir adı göster
+                            if (feature.properties && feature.properties.name) {
+                                layer.bindPopup(feature.properties.name).openPopup();
+                            }
+                        });
+                    }
+                }).addTo(map);
+            })
+            .catch(error => console.error('GeoJSON yüklenirken hata oluştu:', error));
+    </script>
+</body>
+</html>

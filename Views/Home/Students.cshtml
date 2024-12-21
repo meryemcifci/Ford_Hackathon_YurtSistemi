@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Ford_Hackhathon_YurtSistemi.Models.StudentList>
+@{
+    ViewData["Title"] = "Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tc Numarası</th>
+            <th>Öğrenci Adı</th>
+            <th>Öğrenci Soyadı</th>
+            <th>Oda Numarası</th>
+            <th>Telefon Numarası</th>
+            <th>Fotoğrafı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TcNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @if (item.RoomList != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.RoomList.Number)
+                    }
+                    else
+                    {
+                        <span>Oda atanmadı</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+                <td>
+                <td>
+                    <img src="@item.Images" alt="Yurt Resmi" style="width: 200px; height: 150px;" />
+                </td>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center">Kayıtlı oda bulunmamaktadır.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Details" asp-route-id="1" class="btn btn-secondary">Geri Dön</a>
+
+

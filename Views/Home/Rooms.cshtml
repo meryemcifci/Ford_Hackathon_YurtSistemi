@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Ford_Hackhathon_YurtSistemi.Models.RoomList>
+@{
+    ViewData["Title"] = "Rooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Oda Numarası</th>
+            <th>Bulunduğu Kat</th>
+            <th>Kapasite</th>
+            <th>Mevcut Kişi Sayısı</th>
+            <th>Doluluk Oranı(%)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Floor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentOccupancy)
+                </td>
+                <td>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar
+                                             @(item.OccupancyRate >= 75 ? "bg-success" :
+                                               (item.OccupancyRate >= 50 ? "bg-warning" : "bg-danger"))"
+                             role="progressbar"
+                             style="width: @item.OccupancyRate%;"
+                             aria-valuenow="@item.OccupancyRate"
+                             aria-valuemin="0" aria-valuemax="100">
+                            @item.OccupancyRate.ToString("0")%
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center">Kayıtlı oda bulunmamaktadır.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Details" asp-route-id="@Model.FirstOrDefault()?.DormId" class="btn btn-secondary">Geri Dön</a>
+

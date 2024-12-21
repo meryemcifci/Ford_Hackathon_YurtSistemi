@@ -1,0 +1,11 @@
+# Visual Studio dosyalarını hariç tut
+.vs/
+*.vsidx
+
+# Build dosyalarını hariç tut
+bin/
+obj/
+
+# Diğer geçici dosyalar
+*.user
+*.log

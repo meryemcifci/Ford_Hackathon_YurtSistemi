@@ -1,0 +1,53 @@
+﻿    @model Ford_Hackhathon_YurtSistemi.Models.DormList
+    @{
+        ViewData["Title"] = "Details";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bootstrap Tabs</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Yurt Detayı</h1>
+
+        <table class="table">
+            <tr>
+                <th>Yurt Adı</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>@Model.Address</td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td>@Model.Telephone</td>
+            </tr>
+            <tr>
+                <th>Resim</th>
+                <td>
+                    <img src="@Model.Images" alt="Yurt Resmi" style="width: 200px; height: 150px;" />
+                </td>
+            </tr>
+            <tr>
+                <th>Doluluk Oranı</th>
+                <td>@Model.OccupancyRate %</td>
+            </tr>
+        </table>
+        <div class="mt-4">
+            <td>
+                <a asp-action="Rooms" asp-route-id="@Model.Id" class="btn btn-info">Odalar</a>
+                <a asp-action="Students" asp-route-id="@Model.Id" class="btn btn-primary">Öğrenciler</a>
+            </td>
+
+            <!-- Geri Dön Butonu -->
+            <a href="/" class="btn btn-secondary">Geri Dön</a>
+        </div>
+
+
+    </body>
